@@ -1,28 +1,27 @@
-# unocss-preset-starter [![npm](https://img.shields.io/npm/v/unocss-preset-starter)](https://npmjs.com/package/unocss-preset-starter)
+# unocss-preset-animatecss [![npm](https://img.shields.io/npm/v/unocss-preset-animatecss)](https://npmjs.com/package/unocss-preset-animatecss)
 
-UnoCSS preset quickstart template.
 
 ## Features
-- 🔥 Description of the preset
+- 🔥 UnoCSS Preset for Animate.css 
 
 ## Usage
 ```shell
-pnpm i -D unocss-preset-starter unocss
+pnpm i -D unocss-preset-animatecss unocss
 ```
 
 ```ts
 // uno.config.ts
 import { defineConfig } from 'unocss'
-import { presetStarter } from 'unocss-preset-starter'
+import { presetAnimateCSS } from 'unocss-preset-animatecss'
 
 export default defineConfig({
   presets: [
     // ...
-    presetStarter(),
+    presetAnimateCSS(),
   ],
 })
 ```
 
 ## License
 
-[MIT](./LICENSE) License © 2023 [zyyv](https://github.com/zyyv)
+[MIT](./LICENSE) License © 2023 [chizukicn](https://github.com/chizukicn)

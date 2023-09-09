@@ -2,7 +2,7 @@ import { createGenerator } from 'unocss'
 import { test } from 'vitest'
 import { presetAnimateCSS } from '../src'
 
-test('presetStarter', async () => {
+test('preset-animatecss', async () => {
   const uno = createGenerator({
     presets: [presetAnimateCSS()],
   })

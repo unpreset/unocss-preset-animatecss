@@ -37,10 +37,10 @@ export function presetAnimateCSS(): Preset {
   }
 
   return definePreset({
-    name: 'unocss-preset-starter',
+    name: 'unocss-preset-animatecss',
     preflights: [
       {
-        layer: 'animate',
+        layer: 'animate.css',
 
         getCSS: () => {
           return parse({
