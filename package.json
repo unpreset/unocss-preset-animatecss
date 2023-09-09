@@ -47,6 +47,7 @@
     "stub": "unbuild --stub",
     "dev": "pnpm test",
     "play": "vite playground",
+    "build:playground": "vite build playground",
     "prepublishOnly": "pnpm run build",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "lint": "eslint .",
