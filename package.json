@@ -1,24 +1,24 @@
 {
-  "name": "unocss-preset-starter",
+  "name": "unocss-preset-animatecss",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@8.7.0",
-  "description": "<description>",
-  "author": "unpreset <https://github.com/unpreset>",
+  "description": "UnoCSS preset for animate.css",
+  "author": "chizukicn <chizukicn@outlook.com>",
   "license": "MIT",
-  "homepage": "https://github.com/unpreset/unocss-preset-starter#readme",
+  "homepage": "https://github.com/unpreset/unocss-preset-animatecss#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unpreset/unocss-preset-starter.git"
+    "url": "git+https://github.com/unpreset/unocss-preset-animatecss.git"
   },
   "bugs": {
-    "url": "https://github.com/unpreset/unocss-preset-starter/issues"
+    "url": "https://github.com/unpreset/unocss-preset-animatecss/issues"
   },
   "keywords": [
     "unocss",
     "unpreset",
     "unocss-preset",
-    "unocss-preset-starter"
+    "unocss-preset-animatecss"
   ],
   "sideEffects": false,
   "exports": {
@@ -44,7 +44,9 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "dev": "unbuild --stub",
+    "stub": "unbuild --stub",
+    "dev": "pnpm test",
+    "play": "vite playground",
     "prepublishOnly": "pnpm run build",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "lint": "eslint .",
@@ -52,12 +54,21 @@
     "test": "vitest",
     "test:update": "vitest --update"
   },
+  "dependencies": {
+    "postcss": "^8.4.29",
+    "postcss-js": "^4.0.1"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.0",
     "@babel/types": "^7.22.11",
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.5.9",
+    "@types/postcss-js": "^4.0.1",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "animate.css": "^4.1.1",
     "bumpp": "^9.2.0",
     "eslint": "^8.48.0",
+    "fs-extra": "^11.1.1",
     "typescript": "5.1.6",
     "unbuild": "^2.0.0",
     "unocss": "latest",

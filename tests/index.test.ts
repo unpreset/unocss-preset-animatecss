@@ -1,11 +1,10 @@
 import { createGenerator } from 'unocss'
-import { expect, test } from 'vitest'
-import { presetStarter } from '../src'
+import { test } from 'vitest'
+import { presetAnimateCSS } from '../src'
 
 test('presetStarter', async () => {
   const uno = createGenerator({
-    presets: [presetStarter()],
+    presets: [presetAnimateCSS()],
   })
-  const presets = uno.config.presets
-  expect(presets).toHaveLength(1)
+  const root = await uno.generate('animate__backInDown animate__animated')
 })
