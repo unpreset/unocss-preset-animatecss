@@ -11,6 +11,8 @@ export default defineConfig({
   },
   presets: [
     presetUno(),
-    presetAnimateCSS(),
+    presetAnimateCSS({
+      prefix: 'animate-',
+    }),
   ],
 })

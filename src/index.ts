@@ -9,21 +9,27 @@ function toCSS(obj: any) {
   return parse(obj).toString()
 }
 
+type CSSObjectEntries = [string, CSSObject][]
+
 export function presetAnimateCSS(): Preset {
   const root = postcss.parse(animatecss)
   const obj = objectify(root)
 
   const rootStyle = obj[':root']
 
-  const staticRules: [string, CSSObject][] = []
+  const medias: CSSObjectEntries = []
 
-  const keyframes: any[] = []
+  const staticRules: CSSObjectEntries = []
+
+  const keyframes: CSSObjectEntries = []
 
   for (const [name, body] of Object.entries(obj)) {
     if (name.startsWith('.animate__'))
       staticRules.push([name, body])
     else if (name.startsWith('@keyframes'))
       keyframes.push([name.replace('@keyframes', '').trim(), body])
+    else if (name.startsWith('@media'))
+      medias.push([name, body])
   }
 
   /**
@@ -42,9 +48,10 @@ export function presetAnimateCSS(): Preset {
         layer: 'animate.css',
 
         getCSS: () => {
-          return parse({
+          return toCSS({
             ':root': rootStyle,
-          }).toString()
+            ...Object.fromEntries(medias),
+          })
         },
       },
     ],
@@ -72,6 +79,21 @@ export function presetAnimateCSS(): Preset {
           ${toCSS(body)}
         }`]
       }) as Rule[],
+      [/^animate__delay-([\w\.]+)/, ([_, delay]) => {
+        return {
+          'animation-delay': delay,
+        }
+      }],
+      [/^animate__duration-([\w\.]+)/, ([_, duration]) => {
+        return {
+          'animation-duration': duration,
+        }
+      }],
+      [/^animate__repeat-(\d+)/, ([_, count]) => {
+        return {
+          'animation-iteration-count': `calc(var(--animate-repeat) * ${count})`,
+        }
+      }],
     ],
   })
 }

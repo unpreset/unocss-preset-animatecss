@@ -7,6 +7,19 @@ exports[`preset-animatecss 1`] = `
   --animate-delay: 1s;
   --animate-repeat: 1;
 }
+@media print, (prefers-reduced-motion: reduce) {
+  .animate__animated {
+    -webkit-animation-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    -webkit-transition-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+  }
+  .animate__animated[class*=\\"Out\\"] {
+    opacity: 0;
+  }
+}
 /* layer: default */
 .animate__animated {
   -webkit-animation-duration: 1s;
