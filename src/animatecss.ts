@@ -14,6 +14,7 @@ export default `
 .animate__animated {
   -webkit-animation-duration: 1s;
   -webkit-animation-duration: var(--animate-duration);
+  animation-duration: 1s;
   animation-duration: var(--animate-duration);
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;

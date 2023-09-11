@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`preset-animatecss 1`] = `
+"/* layer: animate.css */
+:root {
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+}
+/* layer: default */
+.animate__animated {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: var(--animate-duration);
+  animation-duration: 1s;
+  animation-duration: var(--animate-duration);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animate__animated.animate__delay-1s {
+  -webkit-animation-delay: 1s;
+  -webkit-animation-delay: var(--animate-delay);
+  animation-delay: 1s;
+  animation-delay: var(--animate-delay);
+}
+@keyframes backInDown {
+  0% {
+    -webkit-transform: translateY(-1200px) scale(0.7);
+    transform: translateY(-1200px) scale(0.7);
+    opacity: 0.7;
+  }
+  80% {
+    -webkit-transform: translateY(0px) scale(0.7);
+    transform: translateY(0px) scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate__backInDown {
+  animation-name: backInDown;
+}
+"
+`;

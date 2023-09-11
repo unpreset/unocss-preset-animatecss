@@ -1,26 +1,16 @@
+import { Buffer } from 'node:buffer'
 import type { CSSObject, Preset, Rule } from 'unocss'
 import { definePreset } from 'unocss'
 import postcss from 'postcss'
 import { objectify, parse } from 'postcss-js'
 import animatecss from './animatecss'
 
-const kebabcase = (str: string) => str.replace(/([A-Z])/g, $1 => `-${$1.toLowerCase()}`)
-
-function toCSSProperties(obj: Record<string, any>) {
-  const rs: CSSObject = {}
-  Object.entries(obj).forEach(([key, value]) => {
-    const k = kebabcase(key)
-    if (Array.isArray(value))
-      rs[k] = value.join(' ')
-    else
-      rs[k] = value
-  })
-  return rs
+function toCSS(obj: any) {
+  return parse(obj).toString()
 }
 
 export function presetAnimateCSS(): Preset {
   const root = postcss.parse(animatecss)
-
   const obj = objectify(root)
 
   const rootStyle = obj[':root']
@@ -31,9 +21,18 @@ export function presetAnimateCSS(): Preset {
 
   for (const [name, body] of Object.entries(obj)) {
     if (name.startsWith('.animate__'))
-      staticRules.push([name.slice(1), body])
+      staticRules.push([name, body])
     else if (name.startsWith('@keyframes'))
       keyframes.push([name.replace('@keyframes', '').trim(), body])
+  }
+
+  /**
+   * 将.a.b取b
+   * @param name
+   */
+  const normalizeClassName = (name: string) => {
+    const parts = name.split('.')
+    return parts[parts.length - 1]
   }
 
   return definePreset({
@@ -54,12 +53,13 @@ export function presetAnimateCSS(): Preset {
     },
     rules: [
       ...staticRules.map(([name, body]) => {
+        const className = normalizeClassName(name)
         const animateName = body.animationName as string | undefined
         if (animateName) {
           const keyframe = keyframes.find(([k]) => k === animateName)
           if (keyframe) {
-            const keyframeCSS = `@keyframes ${animateName} {\n${parse(keyframe[1]).toString()}}`
-            return [new RegExp(`^${name}`),
+            const keyframeCSS = `@keyframes ${animateName} {\n${toCSS(keyframe[1])}}`
+            return [new RegExp(`^${className}`),
               () => {
                 return [{
                   'animation-name': animateName,
@@ -68,7 +68,9 @@ export function presetAnimateCSS(): Preset {
             ]
           }
         }
-        return [name, toCSSProperties(body)]
+        return [className, `${name}{
+          ${toCSS(body)}
+        }`]
       }) as Rule[],
     ],
   })
