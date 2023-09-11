@@ -1,4 +1,3 @@
-import { Buffer } from 'node:buffer'
 import type { CSSObject, Preset, Rule } from 'unocss'
 import { definePreset } from 'unocss'
 import postcss from 'postcss'

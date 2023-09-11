@@ -59,8 +59,6 @@
     "test:update": "vitest --update"
   },
   "dependencies": {
-    "camelcase-css": "^2.0.1",
-    "lightningcss": "^1.21.8",
     "postcss": "^8.4.29",
     "postcss-js": "^4.0.1"
   },
