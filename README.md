@@ -2,7 +2,7 @@
 
 
 ## Features
-- 🔥 UnoCSS Preset for Animate.css 
+- 🔥 Animate.css Preset for UnoCSS
 
 ## Usage
 ```shell
@@ -21,6 +21,39 @@ export default defineConfig({
   ],
 })
 ```
+
+```html
+<!-- Input -->
+<div class="animate__animated animate__bounce">Bounce</div>
+```
+```css
+/* Output */
+.animate__animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.animate__bounce {
+  animation-name: bounce;
+}
+
+```
+
+
+## Rules
+
+- animate__animated
+- animate__`[animationName]`
+- animate__delay-`[delay]`
+- animate__duration-`[duration]`
+- animate__repeat-`[repeat]`
+- animate__infinite
+- animate__fast
+- animate__faster
+- animate__slow
+- animate__slower
+
+## Credits
+- [Animate.css](https://animate.style/)
 
 ## License
 
