@@ -54,6 +54,7 @@ export default defineConfig({
 
 ## Credits
 - [Animate.css](https://animate.style/)
+- [UnoCSS](https://unocss.dev/)
 
 ## License
 
